@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/top-bottom.css">
+    <script src="js/jquery-2.2.4.js"></script>
+    <script src="js/axios.js"></script>
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="./js/index.js"></script>
+</head>
+<style>
+    #change{
+        color: #fff;
+    }
+</style>
+
+<body>
+
+    <!--头部-->
+    <div class="dingbu">
+        <div class="dingbu1">
+            <span class="dingbu1_1"><a href="" id="xmsc">小米商城</a><b id="shugang">|</b><a href="">MIUI</a><b
+                    id="shugang">|</b><a href="">loT</a><b id="shugang">|</b><a href="">云服务</a><b id="shugang">|</b><a
+                    href="">天星数科</a>
+                <b id="shugang">|</b><a href="" id="zl1">有品</a><b id="shugang">|</b><a href="">小爱开放平台</a><b
+                    id="shugang">|</b><a href="">企业团购</a><b id="shugang">|</b><a href="">资质证照</a><b id="shugang">|</b><a
+                    href="">协议规则</a>
+                <b id="shugang">|</b><a href="" id="zl2"> 下载app
+                    <div class="xzapp">
+                        <img src="img/4.1.png" alt="" class="jt1" />
+                        <img src="img/5.png" alt="" class="saoma" />
+                        <p class="tisixinxi">小米商城app</p>
+                    </div>
+                </a><b id="shugang">|</b><a href="">智能生活</a><b id="shugang">|</b><a href="" id="select">Select
+                    Location</a></span>
+            <div class="dingbu1_2"><a href="" id="dl">登录</a><b id="shugang">|</b><a href="">注册</a><b id="shugang">|</b><a
+                    href="" id="xxtz">消息通知</a><span class="gwc"><a href=""><em></em> 购物车（0）</a>
+                    <div class="gwc_hover">
+                        <table>
+                            <tbody id="cars">
+                                <tr>
+                                    <td style="line-height: 100px;padding-left: 70px;">这里还没有东西哟</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="head">
+        <a href="./index.html" class="head1_1">
+            <div class="head1_2">
+                <img src="img/logo-mi2.png" alt="" />
+            </div>
+        </a>
+        <div class="head2">
+            <span id="xmyc1"><a href=""><span>小米手机</span>
+                    <div id="bfzyb">
+                        <div class="xmsj">
+                            <div class="xm1">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/10.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米11</p>
+                                    <p id="xm1_3">3999元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/11.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米10至尊纪念版</p>
+                                    <p id="xm1_3">5299元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/12.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米10</p>
+                                    <p id="xm1_3">3799元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/13.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米10 青春版 5G</p>
+                                    <p id="xm1_3">1999元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_right"><a href=""><img src="img/14.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米MIX Alpha</p>
+                                    <p id="xm1_3">19999元起</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </span><span id="xmyc2"><a href=""><span>Redmi 红米</span>
+                    <div id="bfzyb2">
+                        <div class="xmsj">
+                            <div class="xm1">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/15.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi Note 9 系列</p>
+                                    <p id="xm1_3">999元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/16.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi K30S 至尊纪念版</p>
+                                    <p id="xm1_3">2599元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/17.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi K30 至尊纪念版</p>
+                                    <p id="xm1_3">1999元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/18.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi 9A</p>
+                                    <p id="xm1_3">599元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/19.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi K30 系列</p>
+                                    <p id="xm1_3">1299元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_right"><a href=""><img src="img/20.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi 10X</p>
+                                    <p id="xm1_3">999元起</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </span><span id="xmyc3"><a href=""><span>电视</span>
+                    <div id="bfzyb3">
+                        <div class="xmsj">
+                            <div class="xm1">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/21.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米电视大师 82英寸至尊纪念版</p>
+                                    <p id="xm1_3">49999元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/22.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米电视大师 82英寸</p>
+                                    <p id="xm1_3">9999元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/23.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米透视电视</p>
+                                    <p id="xm1_3">49999元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/24.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米电视 大师 65英寸OLED</p>
+                                    <p id="xm1_3">599元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/25.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi 智能电视 MAX 98"</p>
+                                    <p id="xm1_3">19999元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_right"><a href=""><img src="img/26.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米电视4A 60英寸</p>
+                                    <p id="xm1_3">2499元起</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </a></span><span id="xmyc4"><a href=""><span>笔记本</span>
+                    <div id="bfzyb4">
+                        <div class="xmsj">
+                            <div class="xm1">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/27.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi G 游戏本</p>
+                                    <p id="xm1_3"></p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/28.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">RedmiBook 16</p>
+                                    <p id="xm1_3">4499元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/29.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">RedmiBook 14 Ⅱ</p>
+                                    <p id="xm1_3">3199元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/30.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Pro 15.6" 2020款</p>
+                                    <p id="xm1_3">5999元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/31.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">RedmiBook Air 13</p>
+                                    <p id="xm1_3">4499元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_right"><a href=""><img src="img/32.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">显示器</p>
+                                    <p id="xm1_3">2399元起</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </a></span><span id="xmyc5"><a href=""><span>家电</span>
+                    <div id="bfzyb5">
+                        <div class="xmsj">
+                            <div class="xm1">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/33.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">米家互联网空调C1（一级能效）</p>
+                                    <p id="xm1_3">2399元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/34.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">米家互联网空调（一级能效）</p>
+                                    <p id="xm1_3">2399元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/35.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi全自动波轮洗衣机1A</p>
+                                    <p id="xm1_3">799元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/36.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">米家互联网洗烘一体机10kg</p>
+                                    <p id="xm1_3">1899元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/37.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">米家风冷对开门冰箱 483L</p>
+                                    <p id="xm1_3">2199元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_right"><a href=""><img src="img/38.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">米家两门冰箱 160L</p>
+                                    <p id="xm1_3">899元起</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </a></span><span id="xmyc6"><a href=""><span>路由器</span>
+                    <div id="bfzyb6">
+                        <div class="xmsj">
+                            <div class="xm1">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/39.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米路由器AX6000</p>
+                                    <p id="xm1_3">599元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/40.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi路由器 AX6</p>
+                                    <p id="xm1_3">329元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/41.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi路由器 AX5</p>
+                                    <p id="xm1_3">199元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/42.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米路由器 AX1800</p>
+                                    <p id="xm1_3">329元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/43.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米AIoT路由器AX3600</p>
+                                    <p id="xm1_3">499元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_right"><a href=""><img src="img/44.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi路由器AC2100</p>
+                                    <p id="xm1_3">169元起</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </a></span><span id="xmyc7"><a href=""><span>智能硬件</span>
+                    <div id="bfzyb7">
+                        <div class="xmsj">
+                            <div class="xm1">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/45.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米全自动智能门锁</p>
+                                    <p id="xm1_3">1799元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/46.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi小爱触屏音箱Pro8</p>
+                                    <p id="xm1_3">499元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/47.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">小米小爱触屏音箱</p>
+                                    <p id="xm1_3">199元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_1"><a href=""><img src="img/48.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">Redmi小爱音箱 Play</p>
+                                    <p id="xm1_3">79元起</p>
+                                </a>
+                            </div>
+                            <div class="xm2">
+                                <div class="kong"></div>
+                                <div class="xm1_right"><a href=""><img src="img/49.png" alt="" /></a></div>
+                                <a href="">
+                                    <p id="xm1_2">查看全部</p>
+                                    <p id="xm1_4">智能硬件</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </a></span><span><a href=""><span>服务</span></a></span>
+            <span><a href=""><span>社区</span></a></span>
+        </div>
+        <div class="head3">
+            <form action="">
+                <input type="text" placeholder="笔记本" id="ss1" /><a href="" id="ss2"></a>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <!-- 商品样式 -->
+    <div id="cart-style" class="container">
+        <p>小米平板5 <i>|</i><span>小米平板5 Pro 5G</span></p>
+        <button> <a href="" id="change">立即购买</a></button>
+        <ul>
+            <li><a href="">概述页<kjspan>|</kjspan> </a></li>
+            <li><a href="">参数页<span>|</span></a></li>
+            <li><a href="">F码通道<span>|</span></a></li>
+            <li><a href="">咨询客服<span>|</span></a></li>
+            <li><a href="">用户评价</a></li>
+        </ul>
+
+    </div>
+
+    <!-- 图片 -->
+    <div id="photo">
+        <img src="" alt="" id="img">
+    </div>
+
+    <script>
+
+
+        let img = document.getElementById('img');
+        let a = document.getElementById('change')
+        // console.log(a);
+        // console.log(img);
+        let pValue = location.search;
+        // console.log(pValue);
+        // 转化为数组
+        let pValueArr = pValue.split("?");
+        // console.log(pValueArr[1]);
+        // 只需要其中的id
+        pValueArr = pValueArr[1];
+        // console.log(pValueArr);
+
+
+        for(let j=0;j<10;j++){
+    axioss.get(`http://127.0.0.1:9000/json-sever`).then(data => {
+        // console.log(JSON.parse(data));
+       JSON.parse(data).forEach(function (v, i) {
+           if(v.id==pValueArr){ 
+            img.src = v.src1;
+                    a.href = 'shop.html?' + pValueArr;
+               // mesge2.innerHTML=v.mesge2
+               // mesge1.innerHTML=v.mesge1
+               // price.innerHTML=v.price;
+           }     
+       });
+    });
+}
+        axioss.get('http://127.0.0.1:9000/json-sever').then(data => {
+            // console.log(JSON.parse(data));
+            JSON.parse(data).forEach(function (v, i) {
+
+                if (v.id == pValueArr) {
+                    // console.log(v.src1);
+                    // console.log(img.src);
+                    img.src = v.src1;
+                    a.href = 'shop.html?' + pValueArr;
+                }
+
+            });
+
+        });
+    </script>
+
+
+
+        <!--底部-->
+        <!--第一部分-->
+        <div class="dibu1">
+            <dl>
+                <dd><a href=""><span id="tb10"></span>预约维修服务</a></dd>
+                <dd><a href=""><span id="tb11"></span>7天无理由退货</a></dd>
+                <dd><a href=""><span id="tb12"></span>15天免费换货</a></dd>
+                <dd><a href=""><span id="tb13"></span>满99元包邮</a></dd>
+                <dd id="border-no"><a href=""><span id="tb14"></span>520余家售后网点</a></dd>
+            </dl>
+        </div>
+        <!--第二部分-->
+        <div class="dibu2">
+            <div class="dibu2_1">
+                <p>帮助中心</p>
+                <dl>
+                    <dd><a href="">账户管理</a></dd>
+                    <dd><a href="">购物指南</a></dd>
+                    <dd><a href="">订单操作</a></dd>
+        
+                </dl>
+            </div>
+            <div class="dibu2_2">
+                <p>服务支持</p>
+                <dl>
+                    <dd><a href="">小米之家</a></dd>
+                    <dd><a href="">服务网点</a></dd>
+                    <dd><a href="">授权体验店</a></dd>
+                </dl>
+            </div>
+            <div class="dibu2_3">
+                <p>线下门店</p>
+                <dl>
+                    <dd><a href="">售后政策</a></dd>
+                    <dd><a href="">自助服务</a></dd>
+                    <dd><a href="">相关下载</a></dd>
+                </dl>
+            </div>
+            <div class="dibu2_4">
+                <p>关于门店</p>
+                <dl>
+                    <dd><a href="">了解小米</a></dd>
+                    <dd><a href="">加入小米</a></dd>
+                    <dd><a href="">投资者关系</a></dd>
+                    <dd><a href="">企业社会责任</a></dd>
+                    <dd><a href="">廉洁举报</a></dd>
+                </dl>
+            </div>
+            <div class="dibu2_5">
+                <p>关于我们</p>
+                <dl>
+                    <dd><a href="">新浪微博</a></dd>
+                    <dd><a href="">官方微信</a></dd>
+                    <dd><a href="">联系我们</a></dd>
+                    <dd><a href="">公益资金会</a></dd>
+                </dl>
+            </div>
+            <div class="dibu2_6">
+                <p>特色服务</p>
+                <dl>
+                    <dd><a href="">F 码通道</a></dd>
+                    <dd><a href="">礼物码</a></dd>
+                    <dd><a href="">防伪查询</a></dd>
+                </dl>
+            </div>
+            <div class="dibu3">
+                <p id="dibu3_1">400-100-5678</p>
+                <p>8:00-18:00(尽收市花费)</p>
+                <a href="">
+                    <div class="dibu3_2">
+                        <div id="xinxi"></div><span>人工客服</span>
+                    </div>
+                </a>
+                <div class="dibu4">
+                    <span>关注小米：</span>
+                    <a href="">
+                        <div class="gzxm"></div>
+                    </a>
+                    <a href="" id="xs">
+                        <div class="gzxm1"></div>
+                        <div class="dibu4_1">
+                            <img src="img/504.png" alt="" />
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--底部声明-->
+        <div id="ys">
+            <div class="bottom">
+                <div class="bottom1">
+                    <div class="bottom2">
+                        <img src="img/logo-mi2.png" alt="" />
+                    </div>
+                    <div class="bottom3">
+                        <p>
+                            <a href="">小米商城</a><span id="shuxian">|</span>
+                            <a href="">MIUI</a><span id="shuxian">|</span>
+                            <a href="">米家</a><span id="shuxian">|</span>
+                            <a href="">米聊</a><span id="shuxian">|</span>
+                            <a href="">多看</a><span id="shuxian">|</span>
+                            <a href="">游戏</a><span id="shuxian">|</span>
+                            <a href="">政企服务</a><span id="shuxian">|</span>
+                            <a href="">小米天猫店</a><span id="shuxian">|</span>
+                            <a href="">小米集团隐私政策</a><span id="shuxian">|</span>
+                            <a href="">小米公司儿童信息保护规则</a><span id="shuxian">|</span>
+                            <a href="">小米商城隐私政策</a><span id="shuxian">|</span>
+                            <a href="">小米商城用户协议</a><span id="shuxian">|</span>
+                            <a href="">问题反馈</a><span id="shuxian">|</span>
+                            <a href="">Select Location</a>
+                        </p>
+                        <p>
+                            <a href="">北京互联网法院法律服务工作站</a><span id="shuxian">|</span>
+                            <a href="">中国消费者协会</a><span id="shuxian">|</span>
+                            <a href="">北京市消费者协会</a>
+                        </p>
+                        <p id="ziti-color">
+                            <span>©</span>
+                            <a href="">mi.com</a>
+                            <span>京ICP证110507号</span>
+                            <a href="">京ICP备10046444号</a>
+                            <a href="">京公网安备11010802020134号</a>
+                            <a href="">京网文[2020]0276-042号</a>
+                            <br />
+                            <a href="">（京）网械平台备字（2018）第00005号</a>
+                            <a href="">互联网药品信息服务资格证 (京)-非经营性-2014-0090</a>
+                            <a href="">营业执照</a>
+                            <a href="">医疗器械质量公告</a>
+                            <br />
+                            <a href="">增值电信业务许可证</a>
+                            <span>网络食品经营备案 京食药网食备202010048</span>
+                            <a href="" id="teshu">食品经营许可证</a>
+                            <br />
+                            <span>违法和不良信息举报电话：171-5104-4404</span>
+                            <a href="">知识产权侵权投诉</a>
+                            <span>本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</span>
+                        </p>
+                        <div class="bottom4">
+                            <a href=""><img src="img/510.png" alt="" class="img1" /></a>
+                            <a href=""><img src="img/511.png" alt="" class="img2" /></a>
+                            <a href=""><img src="img/512.png" alt="" class="img2" /></a>
+                            <a href=""><img src="img/513.png" alt="" class="img2" /></a>
+                            <a href=""><img src="img/514.png" alt="" class="img3" /></a>
+                        </div>
+                        <div class="bottom5">
+                            让全球每个人都能享受科技带来的美好生活
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--底部-->
+        <!--固定定位-->
+        <div class="gddw">
+            <div class="gddw2">
+                <div id="gddw"></div>
+                <span id="gddw2">手机APP</span>
+                <div class="gddw9">
+                    <img src="img/520.png" alt="" id="img9" />
+                    <p>扫码领取新
+                        <br />
+                        人百元礼包
+                    </p>
+                    <img src="img/605.png" alt="" id="img10" />
+                </div>
+            </div>
+            <div class="gddw1">
+                <div id="gddw5"></div>
+                <span id="gddw2">个人中心</span>
+            </div>
+            <div class="gddw1">
+                <div id="gddw6"></div>
+                <span id="gddw2">售货服务</span>
+            </div>
+            <div class="gddw1">
+                <div id="gddw7"></div>
+                <span id="gddw2">人工服务</span>
+            </div>
+            <div class="gddw1">
+                <div id="gddw8"></div>
+                <span id="gddw3">购物车</span>
+            </div>
+        </div>
+        <!--固定定位-->
+</body>
+
+</html>

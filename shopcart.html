@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/top-bottom.css">
+    <link rel="stylesheet" href="css/shopcart.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="./js/jquery-2.2.4.js"></script>
+</head>
+<body>
+    <div id="shopcart">
+        <div class="shop-box">
+            <div class="container">
+                <a href="index.html"><img src="./img/logo-mi2.png" alt=""></a>
+                <span>我的购物车</span>
+            </div>
+        </div>
+        <table border="0" cellspacing="0" cellpadding="20" class="table-box">
+            <div id="confirm">
+                <p style="line-height: 140px;">真的要删除该商品吗？</p>
+                <div>
+                    <button id="sure" style="margin-right: 50px;background: #ff6700;color: white;">确定</button>
+                    <button id="not_sure">取消</button>
+                </div>
+            </div>
+            <thead>
+                <tr>
+                    <td><input type="checkbox" name="" id="checkAll1" checked='checked' style=" cursor: pointer;">全选</td>
+                    <td><img src="" alt="">产品图片</td>
+                    <td>产品名称</td>
+                    <td>价格</td>
+                    <td>数量</td>
+                    <td>小计</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <p>123</p> -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><a href="index.html">继续购物</a></td>
+                    <td colspan="3">总计:&emsp;<span id="num" style="color:#ff6700">0</span>&emsp;件</td>
+
+                    <td colspan="2">总计：<span id="money" style="color:#ff6700">0</span>&emsp;元</td>
+                    <td><button class="pay"> <a href="">去结算</a> </button></td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+    <script>
+        class Cart {
+            constructor() {
+                this.getCartGoods();
+                this.allChec = document.querySelectorAll('#checkAll1');
+                this.oneChec = document.querySelectorAll('.checOne');
+                this.onecheck() //默认全选
+                this.total() //在开始时调用一遍总计使界面看起来好一点
+                this.$('tbody').addEventListener('click', this.addfn.bind(this)) //监听点击的是哪个节点
+                // this.LocalData()
+            }
+            // 判断点击的节点
+            addfn(eve) {
+                if (eve.target.className == 'add') {
+                    this.add(eve.target);
+
+                }
+                if (eve.target.className == 'jian') {
+                    this.jianjian(eve.target);
+
+                }
+
+                if (eve.target.className == 'delete') {
+
+                    let confirm = document.getElementById('confirm');
+                    let sure = document.getElementById('sure')
+                    let NOsure = document.getElementById('not_sure')
+                    let body=document.getElementsByTagName('body')
+                    
+                    //   console.log(this);
+                    let that = this;
+                    confirm.style.display = 'block'
+                    sure.onclick = function () {
+
+                        that.delete(eve.target);
+                        confirm.style.display = 'none'
+
+                    }
+                    NOsure.onclick = function () {
+                        confirm.style.display = 'none'
+                    }
+                    //    this.delete(eve.target);
+                    // ;
+                    // 
+                }
+            }
+
+
+
+
+            // 增加商品数量
+
+            add(target1) {
+                // console.log(target1);
+                let numObj = target1.previousElementSibling;
+                // console.log(numObj);
+                // console.log(numObj.innerHTML);
+                let num = numObj.innerHTML - 0 + 1;
+                // console.log(num);
+                numObj.innerHTML = num;
+                // 单价
+                let tdObj = target1.parentNode;
+                let price = tdObj.previousElementSibling.innerHTML;
+
+                tdObj.nextElementSibling.innerHTML = (num - 0) * parseInt(price);
+                let trObj = tdObj.parentNode;
+                // console.log(trObj);
+                this.total()
+
+                // 获取相应商品id
+                let goods_id = trObj.getAttribute('goods');
+                // console.log(goods_id);
+                this.LocalData(goods_id, num)
+            }
+            //   减少数量
+            jianjian(targe) {
+
+                let numObj1 = targe.nextElementSibling;
+                // console.log(numObj1);
+                let num = numObj1.innerHTML - 0 - 1; //数量减1
+                // console.log(num);
+                //判定数量是否小于或等于1，如果小于或等于1之后强制让其等于1，其余不变
+                if (num <= 1) {
+                    num = 1
+                    numObj1.innerHTML = num;
+
+                } else {
+                    numObj1.innerHTML = num;
+
+                }
+
+                let tdObj1 = targe.parentNode;
+                // console.log(tdObj1);
+
+                let price = tdObj1.previousElementSibling.innerHTML;
+
+                tdObj1.nextElementSibling.innerHTML = (num - 0) * parseInt(price);
+                let tdObj2 = tdObj1.parentNode //获取tr节点
+                let goods_id1 = tdObj2.getAttribute('goods');
+                // 
+                // console.log(goods_id1);
+                this.total()
+                this.LocalData(goods_id1, num)
+
+            }
+            // 删除
+            delete(tar) {
+                // console.log(tar);
+                let trObj = tar.parentNode.parentNode;
+                let id = trObj.getAttribute('goods');
+                // console.log(id);
+                let that = this;
+                //   console.log(this); 
+
+                //   当前商品选中,则更新数量
+                //   console.log((trObj.children)[0].firstElementChild.checked);
+                trObj.remove();
+                if ((trObj.children)[0].firstElementChild.checked) {
+                    that.total(document.querySelectorAll('.checOne'))
+                }
+                //   更新localstorge中的数据
+                this.LocalData(id);
+            }
+            LocalData(goods_id, num = 0) {
+                //  console.log(goodsId, num);
+                let data = localStorage.getItem('cart');
+                // console.log(data);
+
+                data = JSON.parse(data);
+                // console.log(data);
+
+                data.forEach((goods, index) => {
+                    // console.log(goods);
+                    if (goods_id == goods.id) {
+                        if (num) {
+                            goods.num = num;
+                        }
+                        // 修改数量
+                        else { // 删除当前商品
+                            data.splice(index, 1)
+                        }
+                    }
+                    //   console.log(goods.num);
+                });
+                // console.log(data);
+                // 更新到local中
+                localStorage.setItem('cart', JSON.stringify(data))
+            }
+            total(Obj = '') {
+                // 删除的时候,重新获取单选的数据
+                this.oneChec = Obj || this.oneChec;
+                // console.log(this.oneChec);
+                let total_num = 0; //定义总数量为0
+                let total_price = 0; //定义总价为0
+                this.oneChec.forEach(goods => {
+                    //   console.log(goods);
+                    if (goods.checked) { // 判断选中的商品
+                        let goodsTrObj = goods.parentNode.parentNode;
+                        // console.log(goodsTrObj);
+                        let num = goodsTrObj.querySelector('.goods-num').innerHTML - 0;
+                        let subT = goodsTrObj.querySelector('.goods-price').innerHTML - 0;
+                        //  console.log(num, subT);
+                        total_num += num;
+                        total_price += subT;
+                    }
+                });
+                this.$('#num').innerHTML = total_num;
+                this.$('#money').innerHTML = total_price;
+            }
+            // 点击单选复选
+            onecheck() {
+
+                let that = this;
+                let num = 0;
+                let at = 0;
+                // let length = this.oneChec.length;
+
+                this.oneChec.forEach((one, key) => {
+                    //   console.log(one.checked);
+                    one.checked && num++;
+                    one.onclick = function () {
+                        // console.log(this.checked);
+                        if (this.checked) {
+                            // 选取当前处于选中状态按钮
+                            num++
+                            // console.log(key);
+                            // 让全选选中
+                            //   console.log(num);
+                            if (num % 2 == 0) {
+                                $('#checkAll1').prop("checked", true)
+
+                            }
+                            //   
+
+                        } else {
+                            num--;
+                            // 取消全选
+                            $('#checkAll1').prop("checked", false)
+
+
+                        }
+
+                        that.total();
+                    }
+
+                })
+
+                $('#checkAll1').on('click', function () {
+
+                    if (at % 2 == 0) {
+                        for (let i = 0; i < $('.checOne').length; i++) {
+                            $(".checOne").prop("checked", false);
+
+                        }
+                        at++
+                        that.total();
+
+                        return;
+                    }
+                    if (at % 2 == 1) {
+                        for (let i = 0; i < $('.checOne').length; i++) {
+                            $(".checOne").prop("checked", true);
+
+                        }
+                        at++
+                    }
+                    that.total();
+                })
+
+
+            }
+            // 获取之前的数据
+            getCartGoods() {
+                let cartG = localStorage.getItem('cart');
+                // console.log(cartG);
+                let html = '';
+                JSON.parse(cartG).forEach(data => {
+                    // console.log(data);
+                    html += `<tr goods='${data.id}'>
+                <td><input type='checkbox' class="checOne" checked=''style=" cursor: pointer;"></td>
+                <td><img src="${data.src}"  style="height: 100px;width: 100px;"></td>
+                <td>${data.name}</td>
+                <td>${data.price}元</td>
+                <td><button class="jian" style=" cursor: pointer;">-</button>&nbsp;<span class='goods-num'> ${data.num}</span> <button class='add'style=" cursor: pointer;">+</button></td>
+                <td class='goods-price'>${data.num*data.price}</td>
+                <td><button class='delete' style=" cursor: pointer;">删除</button></td>
+                </tr>`;
+                });
+                // console.log(html);
+                this.$('tbody').innerHTML = html;
+
+            }
+            $(tag) {
+                return document.querySelector(tag);
+            }
+        }
+        new Cart;
+    </script>
+
+    <!--底部-->
+    <!--第一部分-->
+    <div class="dibu1">
+        <dl>
+            <dd><a href=""><span id="tb10"></span>预约维修服务</a></dd>
+            <dd><a href=""><span id="tb11"></span>7天无理由退货</a></dd>
+            <dd><a href=""><span id="tb12"></span>15天免费换货</a></dd>
+            <dd><a href=""><span id="tb13"></span>满99元包邮</a></dd>
+            <dd id="border-no"><a href=""><span id="tb14"></span>520余家售后网点</a></dd>
+        </dl>
+    </div>
+    <!--第二部分-->
+    <div class="dibu2">
+        <div class="dibu2_1">
+            <p>帮助中心</p>
+            <dl>
+                <dd><a href="">账户管理</a></dd>
+                <dd><a href="">购物指南</a></dd>
+                <dd><a href="">订单操作</a></dd>
+    
+            </dl>
+        </div>
+        <div class="dibu2_2">
+            <p>服务支持</p>
+            <dl>
+                <dd><a href="">小米之家</a></dd>
+                <dd><a href="">服务网点</a></dd>
+                <dd><a href="">授权体验店</a></dd>
+            </dl>
+        </div>
+        <div class="dibu2_3">
+            <p>线下门店</p>
+            <dl>
+                <dd><a href="">售后政策</a></dd>
+                <dd><a href="">自助服务</a></dd>
+                <dd><a href="">相关下载</a></dd>
+            </dl>
+        </div>
+        <div class="dibu2_4">
+            <p>关于门店</p>
+            <dl>
+                <dd><a href="">了解小米</a></dd>
+                <dd><a href="">加入小米</a></dd>
+                <dd><a href="">投资者关系</a></dd>
+                <dd><a href="">企业社会责任</a></dd>
+                <dd><a href="">廉洁举报</a></dd>
+            </dl>
+        </div>
+        <div class="dibu2_5">
+            <p>关于我们</p>
+            <dl>
+                <dd><a href="">新浪微博</a></dd>
+                <dd><a href="">官方微信</a></dd>
+                <dd><a href="">联系我们</a></dd>
+                <dd><a href="">公益资金会</a></dd>
+            </dl>
+        </div>
+        <div class="dibu2_6">
+            <p>特色服务</p>
+            <dl>
+                <dd><a href="">F 码通道</a></dd>
+                <dd><a href="">礼物码</a></dd>
+                <dd><a href="">防伪查询</a></dd>
+            </dl>
+        </div>
+        <div class="dibu3">
+            <p id="dibu3_1">400-100-5678</p>
+            <p>8:00-18:00(尽收市花费)</p>
+            <a href="">
+                <div class="dibu3_2">
+                    <div id="xinxi"></div><span>人工客服</span>
+                </div>
+            </a>
+            <div class="dibu4">
+                <span>关注小米：</span>
+                <a href="">
+                    <div class="gzxm"></div>
+                </a>
+                <a href="" id="xs">
+                    <div class="gzxm1"></div>
+                    <div class="dibu4_1">
+                        <img src="img/504.png" alt="" />
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--底部声明-->
+    <div id="ys">
+        <div class="bottom">
+            <div class="bottom1">
+                <div class="bottom2">
+                    <img src="img/logo-mi2.png" alt="" />
+                </div>
+                <div class="bottom3">
+                    <p>
+                        <a href="">小米商城</a><span id="shuxian">|</span>
+                        <a href="">MIUI</a><span id="shuxian">|</span>
+                        <a href="">米家</a><span id="shuxian">|</span>
+                        <a href="">米聊</a><span id="shuxian">|</span>
+                        <a href="">多看</a><span id="shuxian">|</span>
+                        <a href="">游戏</a><span id="shuxian">|</span>
+                        <a href="">政企服务</a><span id="shuxian">|</span>
+                        <a href="">小米天猫店</a><span id="shuxian">|</span>
+                        <a href="">小米集团隐私政策</a><span id="shuxian">|</span>
+                        <a href="">小米公司儿童信息保护规则</a><span id="shuxian">|</span>
+                        <a href="">小米商城隐私政策</a><span id="shuxian">|</span>
+                        <a href="">小米商城用户协议</a><span id="shuxian">|</span>
+                        <a href="">问题反馈</a><span id="shuxian">|</span>
+                        <a href="">Select Location</a>
+                    </p>
+                    <p>
+                        <a href="">北京互联网法院法律服务工作站</a><span id="shuxian">|</span>
+                        <a href="">中国消费者协会</a><span id="shuxian">|</span>
+                        <a href="">北京市消费者协会</a>
+                    </p>
+                    <p id="ziti-color">
+                        <span>©</span>
+                        <a href="">mi.com</a>
+                        <span>京ICP证110507号</span>
+                        <a href="">京ICP备10046444号</a>
+                        <a href="">京公网安备11010802020134号</a>
+                        <a href="">京网文[2020]0276-042号</a>
+                        <br />
+                        <a href="">（京）网械平台备字（2018）第00005号</a>
+                        <a href="">互联网药品信息服务资格证 (京)-非经营性-2014-0090</a>
+                        <a href="">营业执照</a>
+                        <a href="">医疗器械质量公告</a>
+                        <br />
+                        <a href="">增值电信业务许可证</a>
+                        <span>网络食品经营备案 京食药网食备202010048</span>
+                        <a href="" id="teshu">食品经营许可证</a>
+                        <br />
+                        <span>违法和不良信息举报电话：171-5104-4404</span>
+                        <a href="">知识产权侵权投诉</a>
+                        <span>本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</span>
+                    </p>
+                    <div class="bottom4">
+                        <a href=""><img src="img/510.png" alt="" class="img1" /></a>
+                        <a href=""><img src="img/511.png" alt="" class="img2" /></a>
+                        <a href=""><img src="img/512.png" alt="" class="img2" /></a>
+                        <a href=""><img src="img/513.png" alt="" class="img2" /></a>
+                        <a href=""><img src="img/514.png" alt="" class="img3" /></a>
+                    </div>
+                    <div class="bottom5">
+                        让全球每个人都能享受科技带来的美好生活
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--底部-->
+    <!--固定定位-->
+    <div class="gddw">
+        <div class="gddw2">
+            <div id="gddw"></div>
+            <span id="gddw2">手机APP</span>
+            <div class="gddw9">
+                <img src="img/520.png" alt="" id="img9" />
+                <p>扫码领取新
+                    <br />
+                    人百元礼包
+                </p>
+                <img src="img/605.png" alt="" id="img10" />
+            </div>
+        </div>
+        <div class="gddw1">
+            <div id="gddw5"></div>
+            <span id="gddw2">个人中心</span>
+        </div>
+        <div class="gddw1">
+            <div id="gddw6"></div>
+            <span id="gddw2">售货服务</span>
+        </div>
+        <div class="gddw1">
+            <div id="gddw7"></div>
+            <span id="gddw2">人工服务</span>
+        </div>
+        <div class="gddw1">
+            <div id="gddw8"></div>
+            <span id="gddw3">购物车</span>
+        </div>
+    </div>
+    <!--固定定位-->
+</body>
+
+</html>
